@@ -1,0 +1,106 @@
+﻿
+Version 0.0.25
+	* Added Xunit Test cases.
+
+Version 0.0.24
+	* Added search product not found.
+
+Version 0.0.23
+	* Readme updated: Setting up database connection string added.
+
+Version 0.0.22
+	* Readme updated.
+
+Version 0.0.21
+	* Readme updated.
+
+Version 0.0.20
+	* Serilog logs added.
+
+Version 0.0.19
+	* Readme added
+
+Version 0.0.18
+	* When order created update user orders.
+	* Added new field qty to order model.
+	* Out of stock check added.
+	* User get information added.
+
+Version 0.0.17
+	* New Migration added.
+	* Order create, get, edit added.
+	* Controller parameters changed to make more sense to the frontend.
+
+Version 0.0.16
+	* Customer search products by name or category.
+
+Version 0.0.15
+	* Data type bug fixes in Category, Product controllers.
+	* New Migration added.
+
+Version 0.0.14
+	* Admin Product Category Update.
+
+Version 0.0.13
+	* WeatherForcast default controller deleted.
+
+Version 0.0.12
+	* Category endpoints added.
+	* Category product update till work need to be done.
+
+Version 0.0.11
+	* ProductController. All CRUD operations added.
+		* Get all products
+		* View a product
+		* Update product
+		* Delete product
+	
+	* UserController create user response changed.
+
+Version 0.0.10
+	* UserController. User logout endpoint added.
+
+Version 0.0.9
+	* ProductController product create added.
+	* AdminController changes.
+	* UserController changes.
+	* Added JSON support with Newtonsoft.Json (.JSON) package.
+	* Changes in models.
+	* New migration made.
+
+Version 0.0.8
+	* Admin controller changed method rename.
+	* Product controller added.
+
+Version 0.0.7
+	* Admin controller created.
+	* Create a script to automatically create admin user.
+
+Version 0.0.6
+	* User login added.
+
+Version 0.0.5
+	* User registration validations added.
+	* Login route added.
+	* UsersController renamed to UserController.
+
+Version 0.0.4
+	* Many to many relationship removed because of unexpected issues in API.
+	* Migration created.
+	* API works with the database.
+	* User registration added.
+	* UserController renamed to UsersController.
+	* Password hash generation function added.
+
+Version 0.0.3
+	* Model relationships added.
+	* Migration created.
+
+Version 0.0.2
+	* Deleted WeatherForecast default controller.
+	* Created user controller.
+	* Serilog logging added.
+
+Version 0.0.1
+	* Define all the database models.
+	* Added InMemoryDatabase dependency injection.
