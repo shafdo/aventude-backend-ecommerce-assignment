@@ -1,4 +1,7 @@
 ﻿
+Version 0.0.26
+	* Chnagelog.txt moved to WebAPI Project Solution.
+
 Version 0.0.25
 	* Added Xunit Test cases.
 
