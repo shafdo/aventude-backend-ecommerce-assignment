@@ -21,17 +21,21 @@ namespace backend_assignment_unit_tests.Systems.Controllers
             var databaseContext = new EcommerceAPIDbContext(options);
             databaseContext.Database.EnsureCreated();
 
-            // Add product
-            databaseContext.Products.Add(new Product()
+            // If no products found create a in memory new product
+            if (await databaseContext.Products.CountAsync() <= 0)
             {
-                ProductId = new Guid("c2bb10b2-fdbf-455e-b246-e1fc65dd758b"),
-                ProductName = "Mango",
-                ProductDesc = "Test description",
-                ProductStock = 100,
-                ProductCategoryId = null,
-                ProductOrders = "{\"ProductOrders\":[]}"
-            });
-            await databaseContext.SaveChangesAsync();
+                // Add product
+                databaseContext.Products.Add(new Product()
+                {
+                    ProductId = new Guid("c2bb10b2-fdbf-455e-b246-e1fc65dd758b"),
+                    ProductName = "Mango",
+                    ProductDesc = "Test description",
+                    ProductStock = 100,
+                    ProductCategoryId = null,
+                    ProductOrders = "{\"ProductOrders\":[]}"
+                });
+                await databaseContext.SaveChangesAsync();
+            }
 
             return databaseContext;
         }

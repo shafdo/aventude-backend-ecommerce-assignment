@@ -1,4 +1,7 @@
 ﻿
+Version 0.0.27
+	* Test cases modified.
+
 Version 0.0.26
 	* Chnagelog.txt moved to WebAPI Project Solution.
 
