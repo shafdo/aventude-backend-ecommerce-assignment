@@ -57,6 +57,42 @@ namespace backend_assignment.Controllers
 
 
         [HttpGet]
+        [Route("default/create")]
+        public async Task<IActionResult> CreateDefaultCategory()
+        {
+            Guid defaultCategoryId = new Guid("11111111-1111-1111-1111-111111111111");
+            var defaultCategoryCount = dbContext.ProductCategorys.Count(x => x.ProductCategoryId == defaultCategoryId);
+
+            if (defaultCategoryCount <= 0)
+            {
+                var productObject = new CategoryProductJson()
+                {
+                    products = new List<Guid>()
+                };
+
+                var productJson = JsonConvert.SerializeObject(productObject);
+                var newDefaultCategory = new ProductCategory()
+                {
+                    ProductCategoryId = defaultCategoryId,
+                    ProductCategoryDesc = "This is the default product category",
+                    ProductCategoryName = "Default",
+                    ProductCategoryProducts = productJson
+                };
+
+                Console.WriteLine(newDefaultCategory.ProductCategoryId);
+
+                await dbContext.ProductCategorys.AddAsync(newDefaultCategory);
+                await dbContext.SaveChangesAsync();
+
+                this._logger.LogInformation("Default category created.");
+                return Ok("Default category 11111111-1111-1111-1111-111111111111 created.");
+            }
+
+            return Ok("Default category 11111111-1111-1111-1111-111111111111 already exists.");
+        }
+
+
+        [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
             // Public method

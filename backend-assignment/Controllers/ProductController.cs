@@ -90,13 +90,14 @@ namespace backend_assignment.Controllers
             var productOrdersJson = JsonConvert.SerializeObject(productOrdersObject);
 
             Guid productId = Guid.NewGuid();
+            Guid defaultCategoryId = new Guid("11111111-1111-1111-1111-111111111111");
             var product = new Product()
             {
                 ProductId = productId,
                 ProductName = productCreateRequest.ProductName,
                 ProductDesc = productCreateRequest.ProductDesc,
                 ProductStock = productCreateRequest.ProductStock,
-                ProductCategoryId = null,
+                ProductCategoryId = defaultCategoryId,
                 ProductOrders = productOrdersJson
             };
 

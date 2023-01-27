@@ -20,9 +20,11 @@ Ex: `"EcommerceApiConnectionString": "Server=[PASTE-SERVERNAME-HERE];Database=Ec
 
 2. Start the API. Visual Studio should now open the Swagger documentation. `https://localhost:<port>/swagger/index.html`
 
-3. Try out endpoint `GET /api/admin/create` this will create the admin user with default credentials
+3. Execute endpoint `GET /api/admin/create` this will create the admin user with default credentials
 	* Email: admin@aventude.com
 	* Password: Admin321
+
+4. Execute endpoint `GET /api/category/default/create` this will create the default category for newly created products to go through.
 
 
 ## API navigation information
