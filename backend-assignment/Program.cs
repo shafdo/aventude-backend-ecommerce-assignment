@@ -20,7 +20,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
- //builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseInMemoryDatabase("EcommerceDb"));
+// Service CORS
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials();
+}));
+
+//builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseInMemoryDatabase("EcommerceDb"));
 builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceApiConnectionString")));
 
 var app = builder.Build();
@@ -31,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("corsapp");
 
 app.UseHttpsRedirection();
 

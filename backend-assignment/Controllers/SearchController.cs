@@ -37,27 +37,10 @@ namespace backend_assignment.Controllers
         [Route("category/{CategoryId:guid}")]
         public async Task<IActionResult> SearchCategory([FromRoute] Guid CategoryId)
         {
-            var category = await dbContext.ProductCategorys.FindAsync(CategoryId);
-            if (category == null) return NotFound("Category not found.");
+            var categories = dbContext.Products.Where( x => x.ProductCategoryId == CategoryId);
+            if (categories == null) return NotFound("Category not found.");
 
-            // Deserialize JSON Object
-            var categoryProductsJson = category.ProductCategoryProducts;
-            CategoryProductJson categoryProductsObj = JsonConvert.DeserializeObject<CategoryProductJson>(categoryProductsJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-
-            // Category product array empty return an empty list
-            if (categoryProductsObj.products.Count <= 0) return Ok(new List<string>());
-
-
-            List<Product> productsArr = new List<Product>();
-
-            foreach (var product in categoryProductsObj.products)
-            {
-                Guid productId = product;
-                var info = await dbContext.Products.FindAsync(productId);
-                productsArr.Add(info);
-            }
-
-            return Ok(productsArr);
+            return Ok(categories);
         }
     }
 }

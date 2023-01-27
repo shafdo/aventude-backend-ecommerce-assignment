@@ -1,4 +1,7 @@
 ﻿
+Version 0.0.28
+	* Search controller get category method changes.
+
 Version 0.0.27
 	* Test cases modified.
 

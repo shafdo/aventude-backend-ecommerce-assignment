@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using Serilog;
+using backend_assignment.Models.dtos.Response;
 
 namespace backend_assignment.Controllers
 {
@@ -188,7 +189,14 @@ namespace backend_assignment.Controllers
             cookieOptions.Path = "/";
             Response.Cookies.Append("auth", authToken, cookieOptions);
 
-            return Ok("Logged in Successfully.");
+            var res = new LoginResponse()
+            {
+                msg = "Logged in Successfully. Redirecting...",
+                token = authToken,
+            };
+
+
+            return Ok(res);
         }
 
         [Route("logout")]
