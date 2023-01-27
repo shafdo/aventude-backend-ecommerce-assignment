@@ -1,4 +1,7 @@
 ﻿
+Version 0.0.29
+	* Default category added.
+
 Version 0.0.28
 	* Search controller get category method changes.
 
