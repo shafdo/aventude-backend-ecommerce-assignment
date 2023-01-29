@@ -1,4 +1,9 @@
 ﻿
+Version 0.0.30
+	* Default category added.
+	* Added default category to newly creating product.
+	* In memory database added due to an error in migrations.
+
 Version 0.0.29
 	* Default category added.
 

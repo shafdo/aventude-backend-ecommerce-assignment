@@ -33,6 +33,7 @@ namespace backendassignment.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductStock = table.Column<int>(type: "int", nullable: false),
+                    ProductPrice = table.Column<int>(type: "int", nullable: false),
                     ProductCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     ProductOrders = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

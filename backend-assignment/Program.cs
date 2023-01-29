@@ -23,11 +23,14 @@ builder.Services.AddSwaggerGen();
 // Service CORS
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    builder.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials();
+    builder.WithOrigins("http://localhost:3000")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
 }));
 
-//builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseInMemoryDatabase("EcommerceDb"));
-builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceApiConnectionString")));
+builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseInMemoryDatabase("EcommerceDb"));
+//builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EcommerceApiConnectionString")));
 
 var app = builder.Build();
 

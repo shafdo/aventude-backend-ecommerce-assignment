@@ -82,6 +82,7 @@ namespace backend_assignment.Controllers
             // Validations
             if (productCreateRequest.ProductStock <= 0) return BadRequest("Stock must have a minimum of 1.");
 
+            // Create product
             var productOrdersObject = new ProductJson()
             {
                 ProductOrders = new List<Guid>()
@@ -96,10 +97,19 @@ namespace backend_assignment.Controllers
                 ProductId = productId,
                 ProductName = productCreateRequest.ProductName,
                 ProductDesc = productCreateRequest.ProductDesc,
+                ProductPrice = productCreateRequest.ProductPrice,
                 ProductStock = productCreateRequest.ProductStock,
                 ProductCategoryId = defaultCategoryId,
                 ProductOrders = productOrdersJson
             };
+
+            // Update category products
+            var category = await dbContext.ProductCategorys.FindAsync(defaultCategoryId);
+            var categoryProductsJson = category.ProductCategoryProducts;
+            CategoryProductJson categoryProductsObj = JsonConvert.DeserializeObject<CategoryProductJson>(categoryProductsJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            categoryProductsObj.products.Add(productId);
+            categoryProductsJson = JsonConvert.SerializeObject(categoryProductsObj);
+            category.ProductCategoryProducts = categoryProductsJson;
 
             await dbContext.Products.AddAsync(product);
             await dbContext.SaveChangesAsync();
@@ -142,6 +152,7 @@ namespace backend_assignment.Controllers
             product.ProductName = productUpdateRequest.ProductName;
             product.ProductDesc = productUpdateRequest.ProductDesc;
             product.ProductStock = productUpdateRequest.ProductStock;
+            product.ProductPrice = productUpdateRequest.ProductPrice;
 
             await dbContext.SaveChangesAsync();
 
