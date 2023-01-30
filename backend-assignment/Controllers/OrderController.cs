@@ -10,6 +10,8 @@ using Newtonsoft.Json.Linq;
 using backend_assignment.Models.dtos.Product;
 using backend_assignment.Models.dtos.User;
 using Serilog;
+using Microsoft.IdentityModel.Tokens;
+using UserOrdersJson = backend_assignment.Models.dtos.Order.UserOrdersJson;
 
 namespace backend_assignment.Controllers
 {
@@ -92,6 +94,38 @@ namespace backend_assignment.Controllers
         }
         // Util Functions End
 
+        [HttpGet]
+        public async Task<IActionResult> GetUserOrder()
+        {
+            // Validations: User Check
+            bool isUserAuthenticated = checkUserAuth(GetRequest());
+            if (!isUserAuthenticated) return Unauthorized("Please login as a customer.");
+
+            Guid userId = getUserId(GetRequest());
+
+            var orders = dbContext.Orders.Where(x => x.UserId == userId);
+            if (orders.IsNullOrEmpty()) return NotFound("User have no orders yet.");
+            int counter = 0;
+
+            List<UserOrdersJson> userOrders = new List<UserOrdersJson>();
+
+            foreach (var order in orders)
+            {
+                var productId = order.ProductId;
+                var product = dbContext.Products.Where(x => x.ProductId == productId).FirstOrDefault();
+
+                var myList = new UserOrdersJson()
+                {
+                    Order = order,
+                    Product = product
+                };
+
+                userOrders.Add(myList);
+            }
+
+            return new OkObjectResult(userOrders); ;
+        }
+
 
         [HttpGet]
         [Route("{OrderId:guid}")]
@@ -158,7 +192,7 @@ namespace backend_assignment.Controllers
             // User: Add to order list in user model
             var user = await dbContext.Users.FindAsync(userId);
             var userOrdersJson = user.UserOrders;
-            UserOrdersJson userOrdersObj = JsonConvert.DeserializeObject<UserOrdersJson>(userOrdersJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            Models.dtos.User.UserOrdersJson userOrdersObj = JsonConvert.DeserializeObject<Models.dtos.User.UserOrdersJson>(userOrdersJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             userOrdersJson = JsonConvert.SerializeObject(userOrdersObj);
             user.UserOrders = productOrdersJson;
 

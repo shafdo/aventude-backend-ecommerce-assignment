@@ -105,6 +105,8 @@ namespace backend_assignment.Controllers
 
             // Update category products
             var category = await dbContext.ProductCategorys.FindAsync(defaultCategoryId);
+            if(category == null) return BadRequest("Invalid category. Make sure you hit the endpoint '/api/category/default/create'.");
+            
             var categoryProductsJson = category.ProductCategoryProducts;
             CategoryProductJson categoryProductsObj = JsonConvert.DeserializeObject<CategoryProductJson>(categoryProductsJson, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             categoryProductsObj.products.Add(productId);
