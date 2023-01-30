@@ -1,4 +1,7 @@
 ﻿
+Version 0.0.32
+	* [Fix] Frontend cookie sending needs to be resolved.
+
 Version 0.0.31
 	* Frontend cookie sending needs to be resolved.
 

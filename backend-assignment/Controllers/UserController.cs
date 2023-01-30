@@ -184,10 +184,14 @@ namespace backend_assignment.Controllers
             await dbContext.SaveChangesAsync();
 
             // Generate auth cookie to send in HTTP response
-            var cookieOptions = new CookieOptions();
-            cookieOptions.Expires = DateTime.Now.AddDays(1);
-            cookieOptions.Path = "/";
-            cookieOptions.HttpOnly = true;
+            var cookieOptions = new CookieOptions()
+            {
+                Expires = DateTime.Now.AddDays(1),
+                Path = "/",
+                HttpOnly = true,
+                SameSite = SameSiteMode.None,
+                Secure = true
+            };
             Response.Cookies.Append("auth", authToken, cookieOptions);
 
             var res = new LoginResponse()

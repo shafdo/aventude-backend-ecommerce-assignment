@@ -27,6 +27,11 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();
+
+    builder.WithOrigins("http://localhost:5019")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
 }));
 
 builder.Services.AddDbContext<EcommerceAPIDbContext>(options => options.UseInMemoryDatabase("EcommerceDb"));
