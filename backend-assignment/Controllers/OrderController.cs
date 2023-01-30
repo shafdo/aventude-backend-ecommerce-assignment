@@ -110,6 +110,7 @@ namespace backend_assignment.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderCreateRequest orderCreateRequest)
         {
+            Console.WriteLine("Executing create order");
             // Validations: User Check
             bool isUserAuthenticated = checkUserAuth(GetRequest());
             if (!isUserAuthenticated) return Unauthorized("Please login as a customer to create an order.");

@@ -1,4 +1,12 @@
 ﻿
+Version 0.0.31
+	* Frontend cookie sending needs to be resolved.
+
+Version 0.0.30
+	* Default category added.
+	* Added default category to newly creating product.
+	* In memory database added due to an error in migrations.
+
 Version 0.0.29
 	* Default category added.
 

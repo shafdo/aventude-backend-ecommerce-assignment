@@ -9,6 +9,7 @@ namespace backend_assignment.Models
         public string ProductName { get; set; }
         public string ProductDesc { get; set; }
         public int ProductStock { get; set; }
+        public int ProductPrice { get; set; }
         public Guid? ProductCategoryId { get; set; }
 
         // JSON String

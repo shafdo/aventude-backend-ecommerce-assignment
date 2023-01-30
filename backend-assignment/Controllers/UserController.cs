@@ -187,6 +187,7 @@ namespace backend_assignment.Controllers
             var cookieOptions = new CookieOptions();
             cookieOptions.Expires = DateTime.Now.AddDays(1);
             cookieOptions.Path = "/";
+            cookieOptions.HttpOnly = true;
             Response.Cookies.Append("auth", authToken, cookieOptions);
 
             var res = new LoginResponse()
