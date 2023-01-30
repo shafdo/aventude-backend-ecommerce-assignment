@@ -1,4 +1,8 @@
 ﻿
+Version 0.0.33
+	* GET user orders added.
+	* Default category validation added.
+
 Version 0.0.32
 	* [Fix] Frontend cookie sending needs to be resolved.
 
